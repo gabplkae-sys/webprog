@@ -1,14 +1,15 @@
 <?php
-    session_start();
-    include "../config/database.php";
-    // only admin can access this page
-    if (!isset($_SESSION["role"]) || $_SESSION["role"] != "admin") {
-        header("Location: ../index.php");
-        exit();
-    }
-    $students = mysqli_query($conn, "SELECT id FROM users WHERE role='student'");
-    $subjects = mysqli_query($conn, "SELECT id FROM subjects");
-    $enrollments = mysqli_query($conn, "SELECT id FROM enrollments");
+session_start();
+include "../config/database.php";
+// only admin and access this page.
+if(!isset($_SESSION["role"]) || $_SESSION["role"] != "admin"){
+    header("Location: ../index.php");
+    exit;
+}
+$students = mysqli_query($conn, "SELECT id FROM users   WHERE role ='student'");
+$subjects = mysqli_query($conn, "SELECT id FROM subjects");
+$enrollments = mysqli_query($conn, "SELECT id FROM enrollments");
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,6 +59,10 @@
 
     <!-- Main Content -->
     <div class="container py-4">
+        <?php if (isset($_GET["message"])) { ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($_GET["message"]); ?>
+         </div>
+        <?php } ?>
 
         <h2>Admin Dashboard</h2>
 
@@ -74,7 +79,7 @@
 
                         <h6>Student Accounts</h6>
 
-                        <h2><?php echo mysqli_num_rows($students); ?></h2>
+                        <h3><?php echo mysqli_num_rows($students); ?></h3>
 
                         <a
                             href="students/index.php"
@@ -97,7 +102,7 @@
                         <h2><?php echo mysqli_num_rows($subjects); ?></h2>
 
                         <a
-                            href="subjects.html"
+                            href="subjects/index.php     "
                             class="btn btn-primary btn-sm"
                         >
                             Manage Subjects
