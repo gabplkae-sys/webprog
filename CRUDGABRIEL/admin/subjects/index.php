@@ -116,11 +116,13 @@ $result = mysqli_query($conn, $sql);
                                     Edit
                                 </a>
 
-                                <button
+                                <a
                                     class="btn btn-danger btn-sm"
+                                    href="delete.php?id=<?php echo $row['id'];?>"
+                                    onclick="return confirm('Are Sure You Want To Delete This Record?')"
                                 >
                                     Delete
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     <?php } ?>
