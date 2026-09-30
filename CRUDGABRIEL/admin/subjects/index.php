@@ -44,7 +44,7 @@ $result = mysqli_query($conn, $sql);
 
             <a
                 class="navbar-brand"
-                href="dashboard.html"
+                href="../dashboard.php"
             >
                 Student Portal Admin
             </a>
@@ -110,19 +110,17 @@ $result = mysqli_query($conn, $sql);
                             <td>
 
                                 <a
-                                    href="subject_form.html"
+                                    href="edit.php?id=<?php echo $row['id']; ?>"
                                     class="btn btn-warning btn-sm"
                                 >
                                     Edit
                                 </a>
 
-                                <a
+                                <button
                                     class="btn btn-danger btn-sm"
-                                    href="delete.php?id=<?php echo $row['id'];?>"
-                                    onclick="return confirm('Are Sure You Want To Delete This Record?')"
                                 >
                                     Delete
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     <?php } ?>
